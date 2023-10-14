@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %} update Blog {% endblock title %}
+{% block content %}
+
+<div class="add-blog">
+    <div class="container">
+        <div class="row py-5 justify-content-center">
+            <div class="col-md-5">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {{form.media}}
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {% if messages %}
+                        <div class="form-group">
+                        {% include 'message.html' %}
+                        </div>
+                        {% endif %}
+                        </div>
+                    <div class="form-group">
+                        <label for="title">Blog title</label>
+                        <input class="form-control" type="text" name="title" value="{{form.instance.title}}" class="form-control">
+                        <p class="py-1 text-danger errors">{{form.instance.title.errors}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Category</label>
+                        <select class="form-control" name="category" id="category_id">
+                            {% for cate in categories %}
+                            <option value="{{cate.id}}" {% if form.instance.category.pk == cate.pk %} selected {% endif %}>{{cate.title}}</option>
+                            {% endfor %}
+                            <p class="py-1 text-danger errors" >{{form.instance.category.errors}}</p>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Description</label>
+                        {{form.desc | safe}}
+                        <p class="py-1 text-danger errors">{{form.instance.desc.errors}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Blog banner</label>
+                        <input class="form-control" value="{{form.instance.banner.url}}" type="file" name="banner" class="form-control">
+                        <p class="py-1 text-danger errors">{{form.instance.banner.errors}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">tags</label>
+                        <textarea class="form-control" name="tags" id="" cols="30" rows="10" placeholder="enter comma separeted tags">{{form.instance.tags}}</textarea>
+                        <p class="py-1 text-danger errors">{{form.instance.tags.errors}}</p>
+                    </div>
+                    <div class="form-froup my-2">
+                        <button type="submit" class="btn btn-primary btn-block">Update blog</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

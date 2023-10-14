@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} login {% endblock title %}
+{% block content %}
+
+
+<section class="contact-us">
+    <div class="container">
+      <div class="row">
+      
+        <div class="col-lg-12">
+          <div class="down-contact">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="sidebar-item contact-form">
+                  <div class="sidebar-heading">
+                    <h2>    Log into Your Account</h2>
+                  </div>
+                  <div class="content">
+                    
+                    <form id="contact" action="" method="POST" novalidate>
+                        {% csrf_token %}
+                        {% if messages %}
+                        {% include 'message.html' %}
+                        {% endif %}
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                          <fieldset>
+                            <input name="username" type="text" id="username_id" placeholder="Your name/email" >
+                            <p class="py-1 text-danger errors">{{form.username.errors}}</p>
+                          </fieldset>
+                        </div>
+                          <div class="col-md-12 col-sm-12">
+                            <fieldset>
+                              <input name="password" type="password" id="password_id" placeholder="Your password" >
+                              <p class="py-1 text-danger errors">{{form.password.errors}}</p>
+                            </fieldset>
+                          </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-button mr-2">Log In</button>
+                              <a href="{% url 'registration' %}" id="form-submit" class="main-button btn btn-primary">SignUp</a>
+                            </fieldset>
+                          </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

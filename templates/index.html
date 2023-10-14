@@ -1,0 +1,97 @@
+
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+{% block content %}
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="main-banner header-text">
+      <div class="container-fluid">
+
+        <div class="owl-banner owl-carousel">
+          {% for blog in blogs|slice:"8" %}
+          <div class="item">
+            <a href="{% url 'blog_details' blog.slug %}"><img style="height: 440px;" src="{{blog.banner.url}}" alt="banner"></a>
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  <span>{{blog.category}}</span>
+                </div>
+                <a href="{% url 'blog_details' blog.slug %}"><h4>{{blog.title}}</h4></a>
+                <ul class="post-info">
+                  <li><a href="#">{{blog.user.username}}</a></li>
+                  <li><a href="#">{{blog.date}}</a></li>
+                  <li><a href="#">{{blog.blog_comments.all.count}} Comments</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+
+
+    <section class="blog-posts">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+                {% for blog in blogs|slice:"3" %}
+                <div class="col-lg-12">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <a href="{% url 'blog_details' blog.slug %}"><img src="{{blog.banner.url}}" alt="banner"></a>
+                    </div>
+                    <div class="down-content">
+                      <span>{{blog.category}}</span>
+                      <a href="{% url 'blog_details' blog.slug %}"><h4>{{blog.title}}</h4></a>
+                      <ul class="post-info">
+                        <li><a href="{% url 'view_user_information' blog.user.username %}">{{blog.user.username}}</a></li>
+                        <li><a href="#">{{blog.date}}</a></li>
+                        <li><a href="#">{{blog.blog_comments.all.count}} Comments</a></li>
+                      </ul>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-6">
+                            <ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              {% if blog.tags.all.count > 0 %}
+                              {% for tag in blog.tags.all %}
+                              <li>{{tag.title}}</li>
+                              {% endfor %}
+                              {% else %}
+                              None
+                              {% endif %}
+                            </ul>
+                          </div>
+                          <div class="col-6">
+                            <ul class="post-share">
+                              <li><i class="fa fa-share-alt"></i></li>
+                              <li><a href="#">Facebook</a>,</li>
+                              <li><a href="#"> Twitter</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="col-lg-12">
+                  <div class="main-button">
+                    <a href="/blogs">View All Posts</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% include 'sidebar.html' %}
+        </div>
+      </div>
+    </section>
+
+    {% endblock content %}

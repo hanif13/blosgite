@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %} searchText {% endblock title %}
+{% block content %}
+
+ <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+        <section class="page-heading">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="text-content">
+                  <h4>Search Result</h4>
+                  <h2 style="text-transform: none;">Showing result for "{{search_key}}"</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <!-- Banner Ends Here -->
+  
+      <section class="blog-posts grid-system">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="all-blog-posts">
+                <div class="row">
+                  {% for blog in blogs %}
+                  {% include 'blog-card.html' %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            {% include 'sidebar.html' with blogs=recent_blogs %}
+          </div>
+        </div>
+      </section>
+
+{% endblock content %}

@@ -1,0 +1,45 @@
+
+.fa-heart{
+    color: red !important;
+}
+
+.empty-heart{
+    color: #CDCDCD !important;
+}
+
+
+.blog_posts .submit-comment textarea {
+    text-transform: none !important;
+}
+
+.errorlist{
+    color: red !important;
+    padding-bottom: 10px !important;
+}
+
+.contact-us .contact-form input{
+    margin-bottom: 10px;
+}
+
+input, textarea{
+    text-transform: none !important;
+}
+
+.profile-picture{
+    max-width: 100%;
+    height: 100px;
+    width: 100px;
+}
+
+.btn-primary{
+    background-color: #f48840;
+    border: none;
+}
+
+.owl-banner{
+    padding: 47px !important;
+}
+
+.owl-carousel .owl-item img {
+    height: 400px !important;
+}
